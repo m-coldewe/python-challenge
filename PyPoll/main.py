@@ -56,12 +56,23 @@ with open(csvpath) as csvfile:  #to open the csvfile
     #declare the winner
     #the winning candidate is the candidate with the most votes
     if can1_total > can2_total and can3_total:
-        print('Winner: ' + candidate_list[0])
+        winner = candidate_list[0]
     elif can2_total > can1_total and can3_total:
-        print('Winner: ' + candidate_list[1])
+        winner = candidate_list[1]
     elif can3_total > can1_total and can2_total:
-        print('Winner: ' + candidate_list[2])
+        winner = candidate_list[2]
+    print('Winner: ' + winner)
         
+output_path = os.path.join("Analysis","Elections_Results.txt")  #to set print-to location
 
+with open(output_path, 'w') as file:  #to open tile
 
-
+    file.write('Election Results')
+    file.write('\n''\n')
+    file.write(candidate_list[0] + ': ' + str(round(percent_can1, 3)) + '% (' + str(can1_total) + ')')
+    file.write('\n')
+    file.write(candidate_list[1] + ': ' + str(round(percent_can2, 3)) + '% (' + str(can2_total) + ')')
+    file.write('\n')
+    file.write(candidate_list[2] + ': ' + str(round(percent_can3, 3)) + '% (' + str(can3_total) + ')')
+    file.write('\n''\n')
+    file.write('Winner: ' + winner)
